@@ -1,15 +1,4 @@
-let buttonDecrease1 = document.querySelector("#buttonDecrease1");
-let buttonDecrease2 = document.querySelector("#buttonDecrease2");
-let buttonDecrease3 = document.querySelector("#buttonDecrease3");
-let quantity1 = document.querySelector("#quantity1");
-let quantity2 = document.querySelector("#quantity2");
-let quantity3 = document.querySelector("#quantity3");
-let buttonIncrease1 = document.querySelector("#buttonIncrease1");
-let buttonIncrease2 = document.querySelector("#buttonIncrease2");
-let buttonIncrease3 = document.querySelector("#buttonIncrease3");
-let remove1 = document.querySelector("#remove1");
-let remove2 = document.querySelector("#remove2");
-let remove3 = document.querySelector("#remove3");
+
 let productTotal1 = document.querySelector("#productTotal1");
 let productTotal2 = document.querySelector("#productTotal2");
 let productTotal3 = document.querySelector("#productTotal3");
@@ -26,35 +15,28 @@ function eventListeners(e)
     {
         if (e.target.className.includes("buttonDecrease"))
         {
-            console.log(e.target.className);
-            console.log(
-                e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ]
-            );
-            console.log(e.target.nextElementSibling);
-            decreaseProductTotal(
-                e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ],
-                e.target.nextElementSibling
-            );
-            decrease(e.target.nextElementSibling);
+            const quantity = e.target.nextElementSibling ;
+            const productTotal = e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ];
+            
+            decreaseProductTotal(productTotal,quantity);
+            decrease(quantity);
+
         } else if (e.target.className.includes("buttonIncrease"))
         {
-            console.log(
-                e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ],
-                e.target.previousElementSibling
-            )
-            increaseProductTotal(
-                e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ],
-                e.target.previousElementSibling
-            );
-            increase(e.target.previousElementSibling)
-        } else if (e.target.className.includes("remove"))
+            const productTotal = e.target.parentElement.nextElementSibling.nextElementSibling.childNodes[ 1 ]
+            const quantity = e.target.previousElementSibling;
+            increaseProductTotal(productTotal,quantity);
+            increase(quantity)
+            
+            
+        } if (e.target.className.includes("remove"))
         {
-            console.log(e.target, e.target.nextElementSibling.childNodes[ 1 ])
-            removeFunction(e.target, e.target.nextElementSibling.childNodes[ 1 ]);
+            const remove = e.target;
+            const productTotal = e.target.nextElementSibling.childNodes[ 1 ];
+            removeFunction(remove, productTotal);
             subtotalFunction();
             taxFunction();
             totalFunction();
-
 
         }
 
